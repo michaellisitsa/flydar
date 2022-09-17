@@ -9,6 +9,7 @@ class PestTrap(models.Model):
     description = models.CharField(max_length=255)
     users = models.ManyToManyField(User, blank=True)
 
+
 # Create your models here.
 class Observation(models.Model):
     # Multi-tenancy model

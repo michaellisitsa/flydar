@@ -1,0 +1,11 @@
+<form id="form" action="/pest-trap-form/" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    <input id="button" type="submit" value="OK">
+</form>
+
