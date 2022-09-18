@@ -11,7 +11,6 @@ RUN mkdir -p /opt/flydar/pip_cache
 COPY . /opt/flydar
 WORKDIR /opt/flydar
 RUN pip install -r requirements.txt --cache-dir /opt/flydar/pip_cache
-RUN chown -R www-data:www-data /opt/flydar
 
 # Allow access to port 8000
 EXPOSE 8000
