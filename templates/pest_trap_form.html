@@ -1,3 +1,6 @@
+{% load static %}
+<p>{% static 'core/styles.css'%}</p>
+<link rel="stylesheet" type="text/css" href="{% static 'core/styles.css' %}" />
 <form id="form" action="/pest-trap-form/" method="post">
     {% csrf_token %}
     {% for field in form %}
