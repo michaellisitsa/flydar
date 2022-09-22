@@ -48,6 +48,9 @@ if DEBUG:
 INSTALLED_APPS = [
     # prevents django runserver to manage static files on local dev
     "whitenoise.runserver_nostatic",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
