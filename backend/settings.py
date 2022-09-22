@@ -37,8 +37,6 @@ SECRET_KEY = env("SECRET_KEY")
 
 # If I run it locally Debug will be set to True
 DEBUG = env("DEBUG")
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -48,9 +46,7 @@ if DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    # prevents django runserver to manage static files on local dev
     "whitenoise.runserver_nostatic",
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -138,7 +134,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # Note issue with python manage.py collectstatic https://stackoverflow.com/a/73411956
-STATIC_URL = 'static/'
+# What URL will static files be accessed on. E.g. localhost:8000/static/. Relative url passed in below ("static/")
+# This gets overridden by django_heroku.settings(locals()) command
+# An alternative method for service static files from a different provider may be:
+# STATIC_HOST = "https://d4663kmspf1sqa.cloudfront.net" if not DEBUG else ""
+# STATIC_URL = STATIC_HOST + "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -157,6 +157,7 @@ DATABASES["default"].update(db_from_env)
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
+# Want forever-cacheable files and compression support? Just add this to your settings.py:
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Set up Django and React together and deploy on Heroku
