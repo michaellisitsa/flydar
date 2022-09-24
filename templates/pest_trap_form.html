@@ -1,14 +1,24 @@
-{% load static %}
-<p>{% static 'core/styles.css'%}</p>
-<link rel="stylesheet" type="text/css" href="{% static 'core/styles.css' %}" />
-<form id="form" action="/pest-trap-form/" method="post">
-    {% csrf_token %}
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-        </div>
-    {% endfor %}
-    <input id="button" type="submit" value="OK">
-</form>
+{% extends 'base.html' %}
+{% block title %}Signup{% endblock %}
 
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'core/pest-trap-form.css' %}" />
+<form id="pest-trap-form" class="pest-trap-form" action="/pest-trap-form/" method="post">
+    {% csrf_token %}
+    <div class="pest-trap-form__inputs-wrapper">
+        {% for field in form %}
+        <div>
+            <div class="pest-trap-form__input-fields-wrapper">
+                <label class="pest-trap-form__label label--{{field.name}}" for="{{ field.auto_id }}">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+            </div>
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+    </div>
+    <button type="submit">Add user</button>
+</form>
+{% endblock %}

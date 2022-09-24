@@ -7,3 +7,8 @@ class PestTrapForm(ModelForm):
     class Meta:
         model = PestTrap
         fields = ["name", "UniqueId", "description"]
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "name_field"}),
+            "UniqueId": forms.TextInput(attrs={"class": "UniqueId_field"}),
+            "description": forms.TextInput(attrs={"class": "description_field"}),
+        }

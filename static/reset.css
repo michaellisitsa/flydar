@@ -1,0 +1,21 @@
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+/* Remove dot points and indent */
+ul, li {
+  list-style-type: none;
+}
+
+li {
+  text-indent: -2em;
+}

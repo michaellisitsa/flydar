@@ -142,6 +142,7 @@ USE_TZ = True
 # An alternative method for service static files from a different provider may be:
 # STATIC_HOST = "https://d4663kmspf1sqa.cloudfront.net" if not DEBUG else ""
 # STATIC_URL = STATIC_HOST + "/static/"
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -1,0 +1,68 @@
+.pest-trap-form {
+    display: flex;
+    flex-direction: column;
+    color: darkblue;
+    gap: 1em;
+}
+
+.pest-trap-form__inputs-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.pest-trap-form__input-fields-wrapper {
+    display: flex;
+    min-width: 200px;
+    align-items: center;
+}
+
+.errorList {
+    color: red;
+    margin-left: 100px;
+}
+
+.pest-trap-form__input-fields-wrapper > label {
+    display: inline-block;
+    width: 100px;
+}
+
+.pest-trap-form__input-fields-wrapper > label::after {
+    content: ": ";
+}
+
+.pest-trap-form__input-fields-wrapper > input {
+    flex: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    border: solid 1px grey;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0.3em;
+    box-shadow: 2px 2px 2px lightblue;
+}
+
+.fieldWrapper > input {
+    border: 0;
+}
+
+.pest-trap-form > button {
+    background-color: white;
+    padding: 0.5em;
+    border: solid 1px lightblue;
+    border-radius: 5px;
+    color: darkblue;
+    cursor: pointer;
+    box-shadow: 3px 7px darkgrey;
+    margin: auto;
+}
+
+.pest-trap-form > button:hover {
+    background-color: lightgrey;
+}
+
+.pest-trap-form > button:active {
+    background-color: lightblue;
+    box-shadow: 0 3px darkgrey;
+    transform: translate(3px, 4px);
+}
