@@ -38,7 +38,7 @@ def PestTrapFormView(request):
             UniqueId = form.cleaned_data["UniqueId"]
             description = form.cleaned_data["description"]
             trap = PestTrap(
-                name=name, UniqueId=UniqueId, description=f"modified {description}"
+                name=name, UniqueId=UniqueId, description=f"modified {description}" 
             )
 
             # 2. Save the form data to the DB
@@ -122,3 +122,9 @@ class PestTrapViewSet(viewsets.ModelViewSet):
         self.perform_update(serializer)
 
         return Response(serializer.data)
+
+
+# Simple display of all registered pest traps
+def PestTrapTableView(request):
+    query_results = PestTrap.objects.all()
+    return render(request,'pest_traps.html',{'query_results': query_results})

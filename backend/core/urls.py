@@ -10,4 +10,5 @@ urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
     path("api/", include(router.urls)),
     path("pest-trap-form/", views.PestTrapFormView),
+    path("pest-traps/", views.PestTrapTableView)
 ]

@@ -2,7 +2,6 @@ FROM python:3.9-buster
 
 # Apt-get update and initial installations
 RUN apt-get update && apt-get install 
-RUN apt-get install vim -y --no-install-recommends
 # RUN apt-get install nodejs npm -y 
 
 # Copy source files and install py packages

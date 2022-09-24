@@ -1,0 +1,21 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>UniqueID</th>
+        <th>Description</th>
+        <th>Users</th>
+    </tr>
+    {% for item in query_results %}
+    <tr> 
+        <td>{{ item.name}}</td>
+        <td>{{ item.UniqueId }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.users }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+name = models.CharField(max_length=100)
+UniqueId = models.CharField(max_length=50)
+description = models.CharField(max_length=255)
+users = models.ManyToManyField(User, blank=True)
