@@ -168,5 +168,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://dev.to/shakib609/deploy-your-django-react-js-app-to-heroku-2bck
 # https://librenepal.com/article/django-and-create-react-app-together-on-heroku/
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "frontend/build/static"),
 ]

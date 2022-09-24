@@ -4,21 +4,27 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'core/pest-trap-form.css' %}" />
-<form id="pest-trap-form" class="pest-trap-form" action="/pest-trap-form/" method="post">
-    {% csrf_token %}
-    <div class="pest-trap-form__inputs-wrapper">
-        {% for field in form %}
-        <div>
-            <div class="pest-trap-form__input-fields-wrapper">
-                <label class="pest-trap-form__label label--{{field.name}}" for="{{ field.auto_id }}">
-                    {{ field.label }}
-                </label>
-                {{ field }}
+<link rel="stylesheet" type="text/css" href="{% static 'core/pest-trap-form[desktop].css' %}" />
+<div class="pest-trap-form-wrapper">
+    <header>
+        <h1>Register New Pest Trap</h1>
+    </header>
+    <form id="pest-trap-form" class="pest-trap-form" action="/pest-trap-form/" method="post">
+        {% csrf_token %}
+        <div class="pest-trap-form__inputs-wrapper">
+            {% for field in form %}
+            <div>
+                <div class="pest-trap-form__input-fields-wrapper">
+                    <label class="pest-trap-form__label label--{{field.name}}" for="{{ field.auto_id }}">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                </div>
+                {{ field.errors }}
             </div>
-            {{ field.errors }}
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    <button type="submit">Add user</button>
-</form>
+        <button type="submit">Add user</button>
+    </form>
+</div>
 {% endblock %}

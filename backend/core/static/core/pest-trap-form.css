@@ -1,20 +1,33 @@
+.pest-trap-form-wrapper {
+    margin: 2em 15%;
+    /* height: 100%; */
+    height: 70vh;
+    overflow: scroll;
+}
+
+.pest-trap-form-wrapper header {
+    text-align: center;
+}
+
 .pest-trap-form {
     display: flex;
     flex-direction: column;
     color: darkblue;
-    gap: 1em;
+    justify-content: space-between;
 }
 
 .pest-trap-form__inputs-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    justify-content: space-between;
+    gap: 2em;
 }
+
 
 .pest-trap-form__input-fields-wrapper {
     display: flex;
-    min-width: 200px;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5em;
 }
 
 .errorList {
@@ -38,24 +51,30 @@
     border: solid 1px grey;
     box-sizing: border-box;
     display: inline-block;
-    padding: 0.3em;
+    padding: 0.5em;
     box-shadow: 2px 2px 2px lightblue;
+    width: 100%;
 }
+
 
 .fieldWrapper > input {
     border: 0;
 }
 
 .pest-trap-form > button {
+    padding: 1em 2em;
     background-color: white;
-    padding: 0.5em;
     border: solid 1px lightblue;
     border-radius: 5px;
     color: darkblue;
     cursor: pointer;
     box-shadow: 3px 7px darkgrey;
-    margin: auto;
+    position: absolute;
+    bottom: 2em;
+    left: 15%;
+    width: calc(100% - 30%);
 }
+
 
 .pest-trap-form > button:hover {
     background-color: lightgrey;

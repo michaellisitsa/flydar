@@ -1,0 +1,28 @@
+
+@media screen and (min-width: 600px) {
+    .pest-trap-form-wrapper {
+        height: unset;
+        overflow: unset;
+    }
+
+    .pest-trap-form {
+        gap: 2em;
+    }
+
+    .pest-trap-form__input-fields-wrapper {
+        min-width: 200px;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .pest-trap-form__input-fields-wrapper > input {
+            padding: 1em;
+            width: unset;
+        }
+
+    .pest-trap-form > button {
+            margin: auto;
+            padding: 1em 2em;
+            position: unset;
+    }
+}

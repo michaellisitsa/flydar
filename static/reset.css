@@ -3,6 +3,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@viewport {
+  width: device-width;
+}
+
 button,
 input,
 select,
