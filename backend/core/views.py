@@ -15,6 +15,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import ObservationForm, PestTrapForm
+from django.core.exceptions import PermissionDenied
+
+
+def is_inspector(user):
+    return user.groups.filter(name="Inspector").exists()
+
+
+from django.contrib.auth.decorators import user_passes_test
 
 # Render the front page
 class IndexView(TemplateView):
@@ -27,7 +35,8 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url="/accounts/login/")
 # Logic for processing new trap registrations
 def pest_trap_registration(request):
-
+    if not is_inspector(request.user):
+        raise PermissionDenied
     # If the user is sending the form (not loading it)
     if request.method == "POST":
 
@@ -57,7 +66,8 @@ def pest_trap_registration(request):
 
 @login_required(login_url="/accounts/login/")
 def ObservationFormView(request):
-
+    if not is_inspector(request.user):
+        raise PermissionDenied
     # If the user is sending the form (not loading it)
     if request.method == "POST":
 
@@ -83,7 +93,7 @@ def ObservationFormView(request):
             observation.save()
 
             # 3. Redirect to the form submission page
-            return HttpResponseRedirect("/observation-form/")
+            return HttpResponseRedirect("/observation-table/")
 
     else:  # The user is loading the form the first time.
         form = ObservationForm()
@@ -161,15 +171,20 @@ class PestTrapViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
+
 # Tabular display of all registered pest traps
 @login_required(login_url="/accounts/login/")
 def pest_trap_table(request):
+    if not is_inspector(request.user):
+        raise PermissionDenied
     query_results = PestTrap.objects.all()
     return render(request, "pest_trap_table.html", {"query_results": query_results})
 
 
-# Tabular display of all pest trap observations 
+# Tabular display of all pest trap observations
 @login_required(login_url="/accounts/login/")
 def observation_table(request):
+    if not is_inspector(request.user):
+        raise PermissionDenied
     query_results = Observation.objects.all()
     return render(request, "observation_table.html", {"query_results": query_results})
