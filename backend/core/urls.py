@@ -10,5 +10,6 @@ urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
     path("observation-form/", views.ObservationFormView),
     path("pest-trap-registration/", views.pest_trap_registration, name="pest-trap-registration"),
-    path("pest-trap-table/", views.pest_trap_table, name="pest-trap-table")
+    path("pest-trap-table/", views.pest_trap_table, name="pest-trap-table"),
+    path("observation-table/", views.observation_table, name="observation-table")
 ]
