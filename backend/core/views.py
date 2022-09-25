@@ -21,6 +21,10 @@ class IndexView(TemplateView):
     template_name = "core/index.html"
 
 
+from django.contrib.auth.decorators import login_required
+
+
+@login_required(login_url="/accounts/login/")
 # Logic for processing new trap registrations
 def pest_trap_registration(request):
 
@@ -37,9 +41,7 @@ def pest_trap_registration(request):
             name = form.cleaned_data["name"]
             UniqueId = form.cleaned_data["UniqueId"]
             description = form.cleaned_data["description"]
-            trap = PestTrap(
-                name=name, UniqueId=UniqueId, description=description 
-            )
+            trap = PestTrap(name=name, UniqueId=UniqueId, description=description)
 
             # 2. Save the form data to the DB
             trap.save()
@@ -53,6 +55,7 @@ def pest_trap_registration(request):
     return render(request, "pest_trap_registration.html", {"form": form})
 
 
+@login_required(login_url="/accounts/login/")
 def ObservationFormView(request):
 
     # If the user is sending the form (not loading it)
@@ -97,7 +100,7 @@ def signup(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect("/app/")
+            return redirect("/pest-trap-table/")
     else:
         form = UserCreationForm()
     return render(request, "signup.html", {"form": form})
@@ -159,7 +162,8 @@ class PestTrapViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+@login_required(login_url="/accounts/login/")
 # Tabular display of all registered pest traps
 def pest_trap_table(request):
     query_results = PestTrap.objects.all()
-    return render(request,'pest_trap_table.html',{'query_results': query_results})
+    return render(request, "pest_trap_table.html", {"query_results": query_results})
