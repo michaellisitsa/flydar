@@ -1,5 +1,7 @@
-<a href="{% url 'pest-trap-registration' %}">Register a new trap</a>
 
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'pest-trap-registration' %}">Register a new trap</a>
 <table>
     <tr>
         <th>Name</th>
@@ -16,3 +18,4 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
