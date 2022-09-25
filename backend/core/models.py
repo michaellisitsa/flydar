@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+
 class PestTrap(models.Model):
-    # Multi-tenancy model
     name = models.CharField(max_length=100)
     UniqueId = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
@@ -13,9 +12,7 @@ class PestTrap(models.Model):
         return self.name + " - " + self.description
 
 
-# Create your models here.
 class Observation(models.Model):
-    # Multi-tenancy model
     name = models.CharField(max_length=100)
     UniqueId = models.CharField(max_length=50)
     description = models.CharField(max_length=255)

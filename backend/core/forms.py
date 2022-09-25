@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import PestTrap
 
-# Create the Pest Trap form class.
+# Create the Pest Trap form class
 class PestTrapForm(ModelForm):
     class Meta:
         model = PestTrap
@@ -14,7 +14,7 @@ class PestTrapForm(ModelForm):
         }
 
 
-# Create the Observation form class.
+# Create the Observation form class
 class ObservationForm(ModelForm):
     pestTrap = forms.ModelChoiceField(queryset=PestTrap.objects.all())
 
