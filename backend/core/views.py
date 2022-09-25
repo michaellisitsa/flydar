@@ -19,7 +19,7 @@ from django.core.exceptions import PermissionDenied
 
 
 def is_inspector(user):
-    return user.groups.filter(name="Inspector").exists()
+    return user.groups.filter(name="inspectors").exists()
 
 
 from django.contrib.auth.decorators import user_passes_test
