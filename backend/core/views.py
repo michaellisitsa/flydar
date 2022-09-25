@@ -14,7 +14,7 @@ from django.shortcuts import render, redirect
 # https://docs.djangoproject.com/en/4.1/topics/forms/
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import PestTrapForm
+from .forms import ObservationForm, PestTrapForm
 
 # Create your views here.
 class IndexView(TemplateView):
@@ -51,6 +51,41 @@ def PestTrapFormView(request):
         form = PestTrapForm()
 
     return render(request, "pest_trap_form.html", {"form": form})
+
+
+def ObservationFormView(request):
+
+    # If the user is sending the form (not loading it)
+    if request.method == "POST":
+
+        # Instatiate the form based on the PestTrapForm model
+        form = ObservationForm(request.POST)
+
+        # Check the form's valid (no nulls; no errors)
+        if form.is_valid():
+
+            # 1. Process the 'cleaned data'...
+            name = form.cleaned_data["name"]
+            UniqueId = form.cleaned_data["UniqueId"]
+            description = form.cleaned_data["description"]
+            pestTrap = form.cleaned_data["pestTrap"]
+            observation = Observation(
+                name=name,
+                UniqueId=UniqueId,
+                description=f"modified {description}",
+                pestTrap=pestTrap,
+            )
+
+            # 2. Save the form data to the DB
+            observation.save()
+
+            # 3. Redirect to the form submission page
+            return HttpResponseRedirect("/observation-form/")
+
+    else:  # The user is loading the form the first time.
+        form = ObservationForm()
+
+    return render(request, "observation_form.html", {"form": form})
 
 
 def signup(request):
