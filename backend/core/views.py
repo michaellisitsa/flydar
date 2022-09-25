@@ -16,13 +16,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import PestTrapForm
 
-# Create your views here.
+# Render the front page
 class IndexView(TemplateView):
     template_name = "core/index.html"
 
 
 # Logic for processing new trap registrations
-def PestTrapFormView(request):
+def pest_trap_registration(request):
 
     # If the user is sending the form (not loading it)
     if request.method == "POST":
@@ -38,19 +38,19 @@ def PestTrapFormView(request):
             UniqueId = form.cleaned_data["UniqueId"]
             description = form.cleaned_data["description"]
             trap = PestTrap(
-                name=name, UniqueId=UniqueId, description=f"modified {description}" 
+                name=name, UniqueId=UniqueId, description=description 
             )
 
             # 2. Save the form data to the DB
             trap.save()
 
-            # 3. Redirect to the form submission page
-            return HttpResponseRedirect("/pest-trap-form/")
+            # 3. Redirect to the pest trap table
+            return HttpResponseRedirect("/pest-trap-table/")
 
     else:  # The user is loading the form the first time.
         form = PestTrapForm()
 
-    return render(request, "pest_trap_form.html", {"form": form})
+    return render(request, "pest_trap_registration.html", {"form": form})
 
 
 def signup(request):
@@ -124,7 +124,7 @@ class PestTrapViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-# Simple display of all registered pest traps
-def PestTrapTableView(request):
+# Tabular display of all registered pest traps
+def pest_trap_table(request):
     query_results = PestTrap.objects.all()
-    return render(request,'pest_traps.html',{'query_results': query_results})
+    return render(request,'pest_trap_table.html',{'query_results': query_results})
