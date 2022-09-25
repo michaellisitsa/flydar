@@ -9,28 +9,42 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 
-GROUPS = ['inspectors', 'growers']
-MODELS = ['pest trap', 'observation']
-PERMISSIONS = ['view', 'add', 'change', 'delete']  # For now only view permission by default for all, others include add, delete, change
+
+def assign_permissions(group, model_permissions):
+    for key, value in model_permissions.items():
+        for permission in value:
+            name = f"Can {permission} {key}"
+            print(f"Creating permission: {group} {name}")
+
+            try:
+                model_add_perm = Permission.objects.get(name=name)
+            except Permission.DoesNotExist:
+                logging.warning("Permission not found with name '{}'.".format(name))
+                continue
+
+            group.permissions.add(model_add_perm)
+
 
 # Create initial inspector/grower groups and permissions
 class Command(BaseCommand):
-    help = 'Create initial inspector/grower groups and permissions'
+    help = "Create initial inspector/grower groups and permissions"
 
     def handle(self, *args, **options):
-        for group in GROUPS:
-            new_group, created = Group.objects.get_or_create(name=group)
-            for model in MODELS:
-                for permission in PERMISSIONS:
-                    name = f"Can {permission} {model}"
-                    print(f"Creating permission: {new_group} {name}")
-
-                    try:
-                        model_add_perm = Permission.objects.get(name=name)
-                    except Permission.DoesNotExist:
-                        logging.warning("Permission not found with name '{}'.".format(name))
-                        continue
-
-                    new_group.permissions.add(model_add_perm)
+        inspector_group, _ = Group.objects.get_or_create(name="inspectors")
+        assign_permissions(
+            group=inspector_group,
+            model_permissions={
+                "pest trap": ["view", "add", "change", "delete"],
+                "observation": ["view", "add", "change", "delete"],
+            },
+        )
+        grower_group, _ = Group.objects.get_or_create(name="growers")
+        assign_permissions(
+            group=grower_group,
+            model_permissions={
+                "pest trap": ["view", "change"],
+                "observation": ["view"],
+            },
+        )
 
         print("Created default groups and permissions.")
