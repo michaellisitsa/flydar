@@ -8,7 +8,7 @@ router.register(r"profile", views.UserViewSet2, basename="Profile")
 
 urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
-    path("api/", include(router.urls)),
-    path("pest-trap-form/", views.PestTrapFormView),
     path("observation-form/", views.ObservationFormView),
+    path("pest-trap-registration/", views.pest_trap_registration, name="pest-trap-registration"),
+    path("pest-trap-table/", views.pest_trap_table, name="pest-trap-table")
 ]

@@ -9,7 +9,7 @@
     <header>
         <h1>Register New Pest Trap</h1>
     </header>
-    <form id="pest-trap-form" class="pest-trap-form" action="/pest-trap-form/" method="post">
+    <form id="pest-trap-form" class="pest-trap-form" action="/pest-trap-registration/" method="post">
         {% csrf_token %}
         <div class="pest-trap-form__inputs-wrapper">
             {% for field in form %}
