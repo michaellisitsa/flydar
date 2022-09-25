@@ -9,6 +9,9 @@ class PestTrap(models.Model):
     description = models.CharField(max_length=255)
     users = models.ManyToManyField(User, blank=True)
 
+    def __str__(self):
+        return self.name + " - " + self.description
+
 
 # Create your models here.
 class Observation(models.Model):
