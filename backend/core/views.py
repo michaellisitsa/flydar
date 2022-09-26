@@ -81,6 +81,7 @@ def pest_trap_record(request, id):
     trap = PestTrap.objects.filter(id=id)
     observations = Observation.objects.filter(pestTrap=id)
     context = {
+        "id": id,
         "trap": trap,
         "observations": observations
     }
