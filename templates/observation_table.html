@@ -3,17 +3,17 @@
 <h1>Pest Trap Observations</h1>
 <table>
     <tr>
-        <th>Name</th>
-        <th>UniqueID</th>
-        <th>Description</th>
+        <th>ID</th>
         <th>Pest Trap</th>
+        <th>Name</th>
+        <th>Location</th>
     </tr>
     {% for item in query_results %}
     <tr> 
-        <td>{{ item.name}}</td>
-        <td>{{ item.UniqueId }}</td>
-        <td>{{ item.location }}</td>
+        <td>{{ item.id }}</td>
         <td>{{ item.pestTrap }}</td>
+        <td>{{ item.name}}</td>
+        <td>{{ item.location }}</td>
     </tr>
     {% endfor %}
 </table>

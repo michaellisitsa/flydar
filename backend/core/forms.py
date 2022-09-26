@@ -7,10 +7,10 @@ class PestTrapForm(ModelForm):
     """A model form for registering pest traps."""
     class Meta:
         model = PestTrap
-        fields = ["name", "UniqueId", "description"]
+        fields = ["id", "name", "description"]
         widgets = {
+            "id": forms.TextInput(attrs={"class": "UniqueId_field"}),
             "name": forms.TextInput(attrs={"class": "name_field"}),
-            "UniqueId": forms.TextInput(attrs={"class": "UniqueId_field"}),
             "description": forms.TextInput(attrs={"class": "description_field"}),
         }
 
@@ -22,9 +22,9 @@ class ObservationForm(ModelForm):
 
     class Meta:
         model = PestTrap
-        fields = ["name", "UniqueId", "description", "pestTrap"]
+        fields = ["id", "name", "description", "pestTrap"]
         widgets = {
+            "id": forms.TextInput(attrs={"class": "UniqueId_field"}),
             "name": forms.TextInput(attrs={"class": "name_field"}),
-            "UniqueId": forms.TextInput(attrs={"class": "UniqueId_field"}),
             "description": forms.TextInput(attrs={"class": "description_field"}),
         }

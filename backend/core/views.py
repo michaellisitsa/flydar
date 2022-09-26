@@ -50,10 +50,10 @@ def pest_trap_registration(request):
         if form.is_valid():
 
             # 1. Process the 'cleaned data'...
+            id = form.cleaned_data["id"]
             name = form.cleaned_data["name"]
-            UniqueId = form.cleaned_data["UniqueId"]
             description = form.cleaned_data["description"]
-            trap = PestTrap(name=name, UniqueId=UniqueId, description=description)
+            trap = PestTrap(id=id, name=name, description=description)
 
             # 2. Save the form data to the DB
             trap.save()
@@ -94,13 +94,13 @@ def observation_registration(request):
         if form.is_valid():
 
             # 1. Process the 'cleaned data'...
+            id = form.cleaned_data["id"]
             name = form.cleaned_data["name"]
-            UniqueId = form.cleaned_data["UniqueId"]
             description = form.cleaned_data["description"]
             pestTrap = form.cleaned_data["pestTrap"]
             observation = Observation(
+                id=id,
                 name=name,
-                UniqueId=UniqueId,
                 description=description,
                 pestTrap=pestTrap,
             )
