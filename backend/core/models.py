@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class PestTrap(models.Model):
@@ -18,6 +19,7 @@ class Observation(models.Model):
     """A model for the observations related to pest traps."""
 
     id = models.CharField(max_length=50, primary_key=True)
+    pestTrap = models.ForeignKey(PestTrap, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255)
-    pestTrap = models.ForeignKey(PestTrap, on_delete=models.CASCADE)
+    time = models.DateTimeField(default=timezone.now)

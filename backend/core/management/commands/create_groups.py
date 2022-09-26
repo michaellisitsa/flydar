@@ -1,6 +1,6 @@
 """
-Create permission groups
-Create permissions (read only) to models for a set of groups
+Creates initial grower and inspector groups.
+Sets model permissions for both groups.
 """
 
 import logging

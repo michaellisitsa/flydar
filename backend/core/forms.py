@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import PestTrap
+from .models import Observation, PestTrap
 
 
 class PestTrapForm(ModelForm):
@@ -21,10 +21,10 @@ class ObservationForm(ModelForm):
     pestTrap = forms.ModelChoiceField(queryset=PestTrap.objects.all())
 
     class Meta:
-        model = PestTrap
-        fields = ["id", "name", "description", "pestTrap"]
+        model = Observation 
+        fields = ["id", "pestTrap", "name", "description"]
         widgets = {
             "id": forms.TextInput(attrs={"class": "UniqueId_field"}),
             "name": forms.TextInput(attrs={"class": "name_field"}),
-            "description": forms.TextInput(attrs={"class": "description_field"}),
+            "description": forms.TextInput(attrs={"class": "description_field"})
         }

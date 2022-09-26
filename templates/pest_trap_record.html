@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Pest Trap {{ id }}{% endblock %}
+{% block title %}Pest Trap Record{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -13,13 +13,19 @@
 <p>Users: {{ item.users }}</p>
 {% endfor %}
 
+<!--    
+    TODO: Find a way not to repeat this segment which comes from
+    observation_table.html
+-->
 <h2>Pest Trap Observations</h2>
+<a href="{% url 'observation-registration' %}">Register a new observation</a>
 <table>
     <tr>
         <th>Trap ID</th>
         <th>Obs ID</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Time</th>
     </tr>
     {% for item in observations %}
     <tr> 
@@ -27,6 +33,7 @@
         <td>{{ item.id }}</td>
         <td>{{ item.name}}</td>
         <td>{{ item.description }}</td>
+        <td>{{ item.time }}</td>
     </tr>
     {% endfor %}
 </table>
