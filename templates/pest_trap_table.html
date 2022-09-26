@@ -12,7 +12,7 @@
     </tr>
     {% for item in query_results %}
     <tr> 
-        <td>{{ item.id }}</td>
+        <td><a href="{% url "pest-trap" id=item.id %}">{{ item.id }}</a></td>
         <td>{{ item.name}}</td>
         <td>{{ item.description }}</td>
         <td>{{ item.users }}</td>
