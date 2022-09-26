@@ -78,10 +78,10 @@ def pest_trap_table(request):
 # Display of individual trap record
 @login_required(login_url="/accounts/login/")
 def pest_trap_record(request, id):
-    record = PestTrap.objects.filter(id=id)
+    trap = PestTrap.objects.filter(id=id)
     observations = Observation.objects.filter(pestTrap=id)
     context = {
-        "trap": record,
+        "trap": trap,
         "observations": observations
     }
     return render(request, 'pest_trap_record.html', context)
