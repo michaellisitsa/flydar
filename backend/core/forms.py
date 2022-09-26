@@ -2,8 +2,9 @@ from django import forms
 from django.forms import ModelForm
 from .models import PestTrap
 
-# Create the Pest Trap form class
+
 class PestTrapForm(ModelForm):
+    """A model form for registering pest traps."""
     class Meta:
         model = PestTrap
         fields = ["name", "UniqueId", "description"]
@@ -14,8 +15,9 @@ class PestTrapForm(ModelForm):
         }
 
 
-# Create the Observation form class
+
 class ObservationForm(ModelForm):
+    """A model form for registering pest trap observations."""
     pestTrap = forms.ModelChoiceField(queryset=PestTrap.objects.all())
 
     class Meta:

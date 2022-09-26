@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class PestTrap(models.Model):
+    """A model for pest traps."""
     name = models.CharField(max_length=100)
     UniqueId = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
@@ -13,6 +14,7 @@ class PestTrap(models.Model):
 
 
 class Observation(models.Model):
+    """A model for the observations related to pest traps."""
     name = models.CharField(max_length=100)
     UniqueId = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
