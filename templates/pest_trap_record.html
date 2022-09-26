@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Pest Trap Record{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<h1>Pest Trap Record</h1>
+<h2>Trap Details</h2>
+{% for item in trap %}
+<p>ID: {{ item.id }}</p>
+<p>Name: {{ item.name }}</p>
+<p>Description: {{ item.description }}</p>
+<p>Users: {{ item.users }}</p>
+{% endfor %}
+
+<h2>Pest Trap Observations</h2>
+<table>
+    <tr>
+        <th>Trap ID</th>
+        <th>Obs ID</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    {% for item in observations %}
+    <tr> 
+        <td>{{ item.pestTrap }}</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name}}</td>
+        <td>{{ item.description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

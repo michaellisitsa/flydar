@@ -11,7 +11,7 @@ class PestTrap(models.Model):
     users = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
-        return self.pk + " - " + self.name
+        return self.pk
 
 
 class Observation(models.Model):

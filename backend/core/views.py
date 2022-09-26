@@ -75,6 +75,16 @@ def pest_trap_table(request):
     query_results = PestTrap.objects.all()
     return render(request, "pest_trap_table.html", {"query_results": query_results})
 
+# Display of individual trap record
+@login_required(login_url="/accounts/login/")
+def pest_trap_record(request, id):
+    record = PestTrap.objects.filter(id=id)
+    observations = Observation.objects.filter(pestTrap=id)
+    context = {
+        "trap": record,
+        "observations": observations
+    }
+    return render(request, 'pest_trap_record.html', context)
 
 ######################
 #### OBSERVATIONS ####

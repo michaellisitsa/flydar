@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Pest Trap Observations</h1>
+<a href="{% url 'observation-registration' %}">Register a new observation</a>
 <table>
     <tr>
         <th>ID</th>
         <th>Pest Trap</th>
         <th>Name</th>
-        <th>Location</th>
+        <th>Description</th>
     </tr>
     {% for item in query_results %}
     <tr> 
         <td>{{ item.id }}</td>
         <td>{{ item.pestTrap }}</td>
         <td>{{ item.name}}</td>
-        <td>{{ item.location }}</td>
+        <td>{{ item.description }}</td>
     </tr>
     {% endfor %}
 </table>
